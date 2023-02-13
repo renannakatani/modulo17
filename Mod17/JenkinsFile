@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clonar o repositorio') {
+            steps {
+               git branch: 'main', url: 'https://github.com/Guspex/EBAC-QA/tree/main/Mod17'
+            }
+        }
+     stage('Instalar dependencias') {
+            steps {
+               sh 'npm install' 
+            }
+        }
+     stage('Executar testes') {
+            steps {
+               sh 'npx test'
+            }
+        }
+    }
+}
